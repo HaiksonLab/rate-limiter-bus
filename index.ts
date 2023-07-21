@@ -1,4 +1,4 @@
-import {IRateLimiterStoreOptions, RateLimiterAbstract} from 'rate-limiter-flexible';
+import {IRateLimiterStoreOptions, RateLimiterAbstract, RateLimiterRedis} from 'rate-limiter-flexible';
 import timestring from "timestring";
 
 class RateLimitError   extends Error {}
@@ -94,4 +94,5 @@ export {
 	RateLimiterBus,
 	RateLimitError,
 	RateLimitReached,
+	RateLimiterRedis,
 }

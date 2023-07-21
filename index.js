@@ -62,7 +62,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RateLimitReached = exports.RateLimitError = exports.RateLimiterBus = void 0;
+exports.RateLimiterRedis = exports.RateLimitReached = exports.RateLimitError = exports.RateLimiterBus = void 0;
+var rate_limiter_flexible_1 = require("rate-limiter-flexible");
+Object.defineProperty(exports, "RateLimiterRedis", { enumerable: true, get: function () { return rate_limiter_flexible_1.RateLimiterRedis; } });
 var timestring_1 = require("timestring");
 var RateLimitError = /** @class */ (function (_super) {
     __extends(RateLimitError, _super);

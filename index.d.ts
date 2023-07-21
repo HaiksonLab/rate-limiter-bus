@@ -1,4 +1,4 @@
-import { IRateLimiterStoreOptions, RateLimiterAbstract } from 'rate-limiter-flexible';
+import { IRateLimiterStoreOptions, RateLimiterAbstract, RateLimiterRedis } from 'rate-limiter-flexible';
 declare class RateLimitError extends Error {
 }
 declare class RateLimitReached extends RateLimitError {
@@ -32,4 +32,4 @@ declare class RateLimiterBus {
         beforeNext: number;
     }>;
 }
-export { RateLimiterBus, RateLimitError, RateLimitReached, };
+export { RateLimiterBus, RateLimitError, RateLimitReached, RateLimiterRedis, };
