@@ -65,7 +65,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RateLimiterRedis = exports.RateLimitReached = exports.RateLimitError = exports.RateLimiterBus = void 0;
 var rate_limiter_flexible_1 = require("rate-limiter-flexible");
 Object.defineProperty(exports, "RateLimiterRedis", { enumerable: true, get: function () { return rate_limiter_flexible_1.RateLimiterRedis; } });
-var timestring_1 = require("timestring");
+var timestring = require("timestring");
 var RateLimitError = /** @class */ (function (_super) {
     __extends(RateLimitError, _super);
     function RateLimitError() {
@@ -93,7 +93,7 @@ var RateLimiterBus = /** @class */ (function () {
         this.limiters = [];
     }
     RateLimiterBus.prototype.limit = function (per, points, options) {
-        var duration = (typeof per === 'string') ? (0, timestring_1.default)(per) : per;
+        var duration = (typeof per === 'string') ? timestring(per) : per;
         this.limiters.push(
         //@ts-ignore
         new this.rate_limiter(__assign(__assign({ keyPrefix: "".concat(this.name, "_").concat(duration), points: points, duration: duration }, options), this.options)));
