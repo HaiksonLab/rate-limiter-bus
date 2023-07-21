@@ -1,0 +1,13 @@
+{
+  "name": "rate-limiter-bus",
+  "version": "1.0.0",
+  "description": "Rate Limiter Bus",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "Hayk Marukyan (Haikson)",
+  "license": "MIT",
+  "dependencies": {
+    "rate-limiter-flexible": "^2.4.1",
+    "timestring": "^7.0.0"
+  }
+}
