@@ -31,5 +31,6 @@ declare class RateLimiterBus {
         reached: any;
         beforeNext: number;
     }>;
+    delete(key: string): Promise<boolean>;
 }
 export { RateLimiterBus, RateLimitError, RateLimitReached, RateLimiterRedis, };

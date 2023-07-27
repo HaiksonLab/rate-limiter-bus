@@ -88,6 +88,13 @@ class RateLimiterBus {
 		if (res.reached) throw new RateLimitReached('Rate limit reached', {name: this.name, key, ...res});
 		return res;
 	}
+
+	async delete(key: string) {
+		//@ts-ignore
+		await Promise.allSettled( this.limiters.map(a=>a.delete(key)) );
+		return true;
+	}
+
 }
 
 export {
