@@ -51,7 +51,7 @@ class RateLimiterBus {
         this.options = options;
     }
     limit(per, points, options) {
-        const duration = (typeof per === 'string') ? timestring(per) : per;
+        const duration = (typeof per === 'string') ? timestring.default(per) : per;
         this.limiters.push(
         //@ts-ignore
         new this.rate_limiter({ keyPrefix: `${this.name}_${duration}`, points, duration, ...options, ...this.options }));
