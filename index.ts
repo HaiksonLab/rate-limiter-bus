@@ -22,7 +22,7 @@ class RateLimiterBus {
 	}
 
 	limit(per: string | number, points: number, options?: IRateLimiterStoreOptions) {
-		const duration = (typeof per === 'string')? timestring(per) : per;
+		const duration = (typeof per === 'string')? (timestring as any)(per) : per;
 
 		this.limiters.push(
 			//@ts-ignore

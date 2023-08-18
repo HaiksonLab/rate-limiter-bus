@@ -9,26 +9,26 @@ declare class RateLimitReached extends RateLimitError {
 declare class RateLimiterBus {
     protected readonly name: string;
     protected readonly rate_limiter: typeof RateLimiterAbstract;
-    protected readonly options?: IRateLimiterStoreOptions;
-    protected limiters: any[];
-    constructor(name: string, rate_limiter: typeof RateLimiterAbstract, options?: IRateLimiterStoreOptions);
+    protected readonly options?: IRateLimiterStoreOptions | undefined;
+    protected limiters: never[];
+    constructor(name: string, rate_limiter: typeof RateLimiterAbstract, options?: IRateLimiterStoreOptions | undefined);
     limit(per: string | number, points: number, options?: IRateLimiterStoreOptions): this;
     forceConsume(key: string, points?: number): Promise<{
-        reached: any;
-        reachedNow: any;
+        reached: boolean;
+        reachedNow: boolean;
         beforeNext: number;
     }>;
     get(key: string): Promise<{
-        reached: any;
+        reached: boolean;
         beforeNext: number;
     }>;
     consume(key: string): Promise<{
-        reached: any;
-        reachedNow: any;
+        reached: boolean;
+        reachedNow: boolean;
         beforeNext: number;
     }>;
     check(key: string): Promise<{
-        reached: any;
+        reached: boolean;
         beforeNext: number;
     }>;
     delete(key: string): Promise<boolean>;

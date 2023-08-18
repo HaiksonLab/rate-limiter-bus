@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/timestring@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@types/timestring/-/timestring-6.0.2.tgz#326be2b66cd7f2a8e466c33aec3d14f6819da7ab"
+  integrity sha512-JPDV0pPv2UtUrYyWpn/iBA7aDp1vOPYZrUL/9R4Dxrp1XIUrFnqkhN2EroLU0DLsMyN3iWg1vI1pqBNZ+8zxIg==
+
 rate-limiter-flexible@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/rate-limiter-flexible/-/rate-limiter-flexible-2.4.1.tgz#c74cfe36ac2cbfe56f68ded9a3b4b2fde1963c41"
