@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RateLimiterRedis = exports.RateLimitReached = exports.RateLimitError = exports.RateLimiterBus = void 0;
+exports.WithComplex = exports.RateLimiterRedis = exports.RateLimitReached = exports.RateLimitError = exports.RateLimiterBus = void 0;
 const rate_limiter_flexible_1 = require("rate-limiter-flexible");
 Object.defineProperty(exports, "RateLimiterRedis", { enumerable: true, get: function () { return rate_limiter_flexible_1.RateLimiterRedis; } });
 const timestring = __importStar(require("timestring"));
@@ -111,3 +111,14 @@ class RateLimiterBus {
     }
 }
 exports.RateLimiterBus = RateLimiterBus;
+function WithComplex(obj) {
+    //@ts-ignore
+    obj.consume = async function consume(by) {
+        for (const [key, value] of Object.entries(by)) {
+            await obj[key].consume(value);
+        }
+    };
+    //@ts-ignore
+    return obj;
+}
+exports.WithComplex = WithComplex;

@@ -33,4 +33,7 @@ declare class RateLimiterBus {
     }>;
     delete(key: string): Promise<boolean>;
 }
-export { RateLimiterBus, RateLimitError, RateLimitReached, RateLimiterRedis, };
+declare function WithComplex<Limiters extends Record<string, any>, LimitersExtended extends Limiters & {
+    consume(by: Record<keyof Limiters, string>): ReturnType<typeof RateLimiterBus["prototype"]["consume"]>;
+}>(obj: Limiters): LimitersExtended;
+export { RateLimiterBus, RateLimitError, RateLimitReached, RateLimiterRedis, WithComplex };

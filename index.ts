@@ -97,9 +97,24 @@ class RateLimiterBus {
 
 }
 
+function WithComplex<
+	Limiters extends Record<string, any>,
+	LimitersExtended extends Limiters & { consume(by: Record<keyof Limiters, string>): ReturnType<typeof RateLimiterBus["prototype"]["consume"]> }
+	>(obj: Limiters): LimitersExtended {
+	//@ts-ignore
+	obj.consume = async function consume(by) {
+		for (const [key, value] of Object.entries(by)) {
+			await obj[key].consume(value)
+		}
+	}
+	//@ts-ignore
+	return obj;
+}
+
 export {
 	RateLimiterBus,
 	RateLimitError,
 	RateLimitReached,
 	RateLimiterRedis,
+	WithComplex
 }
