@@ -31,7 +31,7 @@ class RateLimiterBus {
 		return this;
 	}
 
-	async forceConsume(key: string, points: number = 1) {
+	async forceConsume(key: string | number, points: number = 1) {
 		//@ts-ignore
 		const settled = await Promise.allSettled( this.limiters.map(a=>a.consume(key, points)) );
 
@@ -53,7 +53,7 @@ class RateLimiterBus {
 		};
 	}
 
-	async get(key: string) {
+	async get(key: string | number) {
 		//@ts-ignore
 		const settled = await Promise.allSettled( this.limiters.map(a=>a.get(key)) );
 
@@ -76,20 +76,20 @@ class RateLimiterBus {
 		};
 	}
 
-	async consume(key: string) {
+	async consume(key: string | number) {
 		await this.check(key);
 		const res = await this.forceConsume(key);
 		if (res.reached) throw new RateLimitReached('Rate limit reached', {name: this.name, key, ...res});
 		return res;
 	}
 
-	async check(key: string) {
+	async check(key: string | number) {
 		const res = await this.get(key);
 		if (res.reached) throw new RateLimitReached('Rate limit reached', {name: this.name, key, ...res});
 		return res;
 	}
 
-	async delete(key: string) {
+	async delete(key: string | number) {
 		//@ts-ignore
 		await Promise.allSettled( this.limiters.map(a=>a.delete(key)) );
 		return true;

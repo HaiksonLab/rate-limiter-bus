@@ -13,25 +13,25 @@ declare class RateLimiterBus {
     protected limiters: never[];
     constructor(name: string, rate_limiter: typeof RateLimiterAbstract, options?: IRateLimiterStoreOptions | undefined);
     limit(per: string | number, points: number, options?: IRateLimiterStoreOptions): this;
-    forceConsume(key: string, points?: number): Promise<{
+    forceConsume(key: string | number, points?: number): Promise<{
         reached: boolean;
         reachedNow: boolean;
         beforeNext: number;
     }>;
-    get(key: string): Promise<{
+    get(key: string | number): Promise<{
         reached: boolean;
         beforeNext: number;
     }>;
-    consume(key: string): Promise<{
+    consume(key: string | number): Promise<{
         reached: boolean;
         reachedNow: boolean;
         beforeNext: number;
     }>;
-    check(key: string): Promise<{
+    check(key: string | number): Promise<{
         reached: boolean;
         beforeNext: number;
     }>;
-    delete(key: string): Promise<boolean>;
+    delete(key: string | number): Promise<boolean>;
 }
 declare function WithComplex<Limiters extends Record<string, any>, LimitersExtended extends Limiters & {
     consume(by: {
