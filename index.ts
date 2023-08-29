@@ -99,7 +99,7 @@ class RateLimiterBus {
 
 function WithComplex<
 	Limiters extends Record<string, any>,
-	LimitersExtended extends Limiters & { consume(by: {[K in keyof Limiters]?: string}): ReturnType<typeof RateLimiterBus["prototype"]["consume"]> }
+	LimitersExtended extends Limiters & { consume(by: {[K in keyof Limiters]?: string | number}): ReturnType<typeof RateLimiterBus["prototype"]["consume"]> }
 	>(obj: Limiters): LimitersExtended {
 	//@ts-ignore
 	obj.consume = async function consume(by) {

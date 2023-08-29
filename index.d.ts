@@ -35,7 +35,7 @@ declare class RateLimiterBus {
 }
 declare function WithComplex<Limiters extends Record<string, any>, LimitersExtended extends Limiters & {
     consume(by: {
-        [K in keyof Limiters]?: string;
+        [K in keyof Limiters]?: string | number;
     }): ReturnType<typeof RateLimiterBus["prototype"]["consume"]>;
 }>(obj: Limiters): LimitersExtended;
 export { RateLimiterBus, RateLimitError, RateLimitReached, RateLimiterRedis, WithComplex };
